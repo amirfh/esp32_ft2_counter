@@ -1,0 +1,137 @@
+
+
+
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>
+        ESP32 COUNTER!
+    </title>
+    <style type="text/css">
+        #title {
+            font-size: 20px;
+        }
+         
+    </style>
+        <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"  -->
+        
+    <!-- <script src="http://192.168.4.1/file?file=jquery.js"> -->
+    <script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    <script  type="text/javascript"  src="jquery.js">
+            <!-- contentType: 'application/json;charset=UTF-8' -->
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var plan ;
+            var actual;
+            var ct ;
+            update_data_json();
+            function update_data_json() {
+                $.ajax({
+                        url: '/get_data_json',
+                        dataType: 'json'
+                    }).done(function(data) {
+                        console.log(data);
+                        //$('#plan').html(data.plan);
+                        document.getElementById("plan").innerHTML = data.plan
+                        //$('#actual').html(data.actual);
+                        document.getElementById("actual").innerHTML = data.actual
+                        //$('#ct').html(data.ct);
+                        document.getElementById("ct").innerHTML = data.ct
+                        document.getElementById("now").innerHTML = data.now
+                        document.getElementById("run").innerHTML = data.run
+                        document.getElementById("running_sec").innerHTML = data.running_sec
+                        setTimeout(update_data_json, 5000);
+                    });
+            }
+        });
+    </script>
+ 
+   
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+        
+        $('#submit_all').click(function() {
+         
+         var plan_set = document.getElementById("plan_set").value ;
+         var actual_set = document.getElementById("actual_set").value ;
+         var ct_set = document.getElementById("ct_set").value ;
+         
+         console.log( plan_set ) ;
+         
+         $.ajax({
+            url: '/query?param1='+ plan_set +'&param2='+ actual_set +'&param3='+ ct_set 
+           
+       } ) ;      
+       } ) ;             
+       } ) ;
+       
+    </script>
+    
+    
+</head>
+ 
+<body>
+  
+<h1 class="text-center" id="title">
+ESP32 COUNTER REV 1.0
+</h1>
+ 
+  
+<label>PLAN: </label><br>  
+<input type="text" id="plan_set"  value="" />
+
+
+<br/><br/>
+<label>ACTUAL: </label><br>     
+<input type="text" id="actual_set"  value="" />
+
+
+<br/><br/>
+<label>CYCLE TIME: </label><br>     
+<input type="text" id="ct_set"  value="" />
+<button onclick= "submit_all" id="submit_all" >Submit</button>  
+<br/><br/>  
+
+<label for="now">TIME :</label> <div id="now"> </div> <br/>
+ 
+<label for="run">RUN :</label> <div id="run"> </div> <br/> 
+
+<label for="plan">PLAN :</label> <div id="plan"> </div> <br/>
+ 
+<label for="actual">ACTUAL :</label> <div id="actual"> </div> <br/>
+
+<label for="ct">CYCLE-TIME :</label> <div id="ct"> </div> <br/>
+
+<label for="running_sec">RUNNING CT :</label> <div id="running_sec"> </div> <br/>
+
+</body>
+ 
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
