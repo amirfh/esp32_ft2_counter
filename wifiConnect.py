@@ -2,11 +2,11 @@ import network
  
 def connect():
   
-  #ssid = "BOLT!-8D33"
-  #password =  "385D63A5"
+  #ssid = "xxxx-xxxx"
+  #password =  "yyyyyyyy"
   
-  ssid = "MyASUS"
-  password =  "fathia_alma" 
+  ssid = "Myxxxx"
+  password =  "xxxx_xxxx" 
  
   station = network.WLAN(network.STA_IF)
  
